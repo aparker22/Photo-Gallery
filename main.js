@@ -11,8 +11,8 @@ var alert = function (e) {
     main.setAttribute("src", img);
     lightbox.classList.remove('hidden');
     lightbox.addEventListener('click', hide);
-    right.addEventListener('click', something);
-    left.addEventListener('click', something);
+    right.addEventListener('click', arrowClicks);
+    left.addEventListener('click', arrowClicks);
 }
 
 //the loop that puts my images on the page and now adds a listener function
@@ -29,12 +29,11 @@ var hide = function (e) {
 }
 
 //function for arrow clicks
-var something = function (e) {
+var arrowClicks = function (e) {
     e.preventDefault();
     var target = e.target;
     right.parentElement.classList.add('hidden');
     console.log(target);
-
 }
 
 
