@@ -1,40 +1,46 @@
-var container = document.querySelector('.container'); //This is a search for my class
-var images = ['beach1.jpeg', 'beach2.jpeg', 'beach3.jpeg', 'beach4.jpg']; //a list of all my images
-var main = document.getElementById('currentImg');
-var lightbox = document.querySelector('#lightbox');
-var right = document.querySelector('.ar');
-var left = document.querySelector('.al');
+var $container = $('.container'); //This is a search for my class
 
-//define function for what will happen on mouse click
-var alert = function (e) {
-    var img = this.getAttribute("src");
-    main.setAttribute("src", img);
-    lightbox.classList.remove('hidden');
-    lightbox.addEventListener('click', hide);
-    right.addEventListener('click', arrowClicks);
-    left.addEventListener('click', arrowClicks);
-}
+var images = ['beach1.jpeg', 'beach2.jpeg', 'beach3.jpeg', 'beach4.jpg']; //a list of all my imagesgi
+
+var $main = $('currentImg');
+var $lightbox = $('#lightbox');
+var $right = $('.ar');
+var $left = $('.al');
+
+
 
 //the loop that puts my images on the page and now adds a listener function
 images.forEach(function(i) {
-        img = document.createElement('img');
-        img.setAttribute("src", i);
-        container.appendChild(img);
-        img.addEventListener('click', alert);
+        $img = $('<img>', {
+        "src": i })
+        $container.append($img); 
+});
+
+//define function for what will happen on mouse click
+$container.on('click', 'img', function(event) {
+    target = event.target;
+    var img = target.src;
+    $main.attr('src', img);
+    $lightbox.removeClass('hidden');
+
 });
 
 //to hide lightbox
-var hide = function (e) {
-    lightbox.classList.toggle('hidden');
-}
+$lightbox.on('click', function(event) {
+    $lightbox.toggleClass('hidden');
+});
+
 
 //function for arrow clicks
-var arrowClicks = function (e) {
-    e.preventDefault();
-    var target = e.target;
+$lightbox.on('click', 'a', function(event) {
+    event.preventDefault();
+    var target = event.target;
     right.parentElement.classList.add('hidden');
     console.log(target);
-}
+})
+
+
+
 
 
 
